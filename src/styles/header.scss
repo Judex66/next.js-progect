@@ -1,0 +1,39 @@
+$font-stack:    Helvetica, sans-serif;
+header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 97px;
+  margin-top: 24px;
+  z-index: 15;
+  position: relative;
+  border-bottom: 1px solid rgba(251, 253, 253, 0.6);
+}
+
+.info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 64px;
+}
+.mainInfo{
+  font-family:$font-stack ;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+}
+.secondInfo{
+  font-family:$font-stack ;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(251, 253, 253, 0.6);
+}
+.oderCall{
+  font-family: Gilroy, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  border: 2px solid #E97550;
+  height: 52px;
+  width: 231px;
+  color: white;
+}
