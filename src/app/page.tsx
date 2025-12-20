@@ -10,7 +10,7 @@ export default function Home() {
         <Image
                  src="/logo.svg"
                  alt="Next.js logo"
-                 width={260}
+                 width={280}
                  height={64}
                  priority
                />
