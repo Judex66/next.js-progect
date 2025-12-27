@@ -4,6 +4,7 @@ export default function Calculator() {
   return (
     <section>
       <Slider />
+      rick and morty test
     </section>
   );
 }
