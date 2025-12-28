@@ -1,0 +1,27 @@
+.flex_box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+
+.cart {
+    width: 100%;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.image {
+    width: 100%;
+}
+
+.name {
+    font-size: 20px;
+    text-align: center;
+}

@@ -1,0 +1,40 @@
+.flex_box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+
+.cart {
+    width: 100%;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.image {
+    width: 100%;
+}
+
+.name {
+    font-size: 20px;
+    text-align: center;
+}
+
+.pagination_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.prev, .next{
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 5px;
+}
