@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import { Character, ApiResponse } from '@/app/rickAPI/APIParts/types';
 import { getCharacters } from '@/app/rickAPI/APIParts/APIService';
+import { characterFilter } from '@/app/rickAPI/APIParts/APIService';
 import '@/styles/rickAPI.css'
 export default function CharacterList() {
     const [characters, setCharacters] = useState<Character[]>([]);
@@ -11,11 +12,13 @@ export default function CharacterList() {
     const [error, setError] = useState<string | null>(null);
     const [page, setPage] = useState(1);
     const [info, setInfo] = useState<ApiResponse['info'] | null>(null);
-
+    const [search, setSearch] = useState('');
     useEffect(() => {
         fetchCharacters();
     }, [page]);
-
+    useEffect(() => {
+        searchCharacter();
+    }, [search]);
     async function fetchCharacters() {
         try {
             setLoading(true);
@@ -30,6 +33,21 @@ export default function CharacterList() {
             setLoading(false);
         }
     }
+    async function searchCharacter() {
+        try {
+            setLoading(true);
+            setError(null);
+            setPage(1);
+            const data = await characterFilter(search);
+            setCharacters(data.results);
+            setInfo(data.info);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed');
+        } finally {
+            setLoading(false);
+        }
+
+    }
 
     if (loading && characters.length === 0) {
         return <div>Loading...</div>;
@@ -41,6 +59,10 @@ export default function CharacterList() {
 
     return (
         <div>
+            <div className="searchBox">
+                <input type="text" value={search}
+                    onChange={(e) => setSearch(e.target.value)} />
+            </div>
             <div className="flex_box">
                 {characters.map((character) => (
                     <div key={character.id} className="cart">
