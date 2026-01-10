@@ -1,0 +1,46 @@
+.modal_box {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.content_box {
+    background: white;
+    display: flex;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.character_img {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.name_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.name{
+    font-size: 16px;
+}
+.close_button {
+    font-size: 25px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+}

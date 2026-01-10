@@ -1,18 +1,19 @@
-// app/components/CharacterList.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
 import { Character, ApiResponse } from '@/app/rickAPI/APIParts/types';
-import { getCharacters } from '@/app/rickAPI/APIParts/APIService';
-import { characterFilter } from '@/app/rickAPI/APIParts/APIService';
+import { getCharacters, characterFilter } from '@/app/rickAPI/APIParts/APIService';
 import '@/styles/rickAPI.css'
+import CharacterModal from './APIParts/Modal';
 export default function CharacterList() {
     const [characters, setCharacters] = useState<Character[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [page, setPage] = useState(1);
     const [info, setInfo] = useState<ApiResponse['info'] | null>(null);
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState<string>('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
     useEffect(() => {
         fetchCharacters();
     }, [page]);
@@ -48,7 +49,15 @@ export default function CharacterList() {
         }
 
     }
+    const openCharacterModal = (character: Character) => {
+        setSelectedCharacter(character);
+        setIsModalOpen(true);
+    };
 
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedCharacter(null);
+    };
     if (loading && characters.length === 0) {
         return <div>Loading...</div>;
     }
@@ -60,14 +69,14 @@ export default function CharacterList() {
     return (
         <div>
             <div className="searchBox">
-                <input type="text" value={search}
+                <input type="text" className='inputSearch' value={search}
                     onChange={(e) => setSearch(e.target.value)} />
             </div>
             <div className="flex_box">
                 {characters.map((character) => (
                     <div key={character.id} className="cart">
                         <img src={character.image} alt={character.name} className="image" />
-                        <h3 className="name">{character.name}</h3>
+                        <h3 onClick={() => openCharacterModal(character)} className="name">{character.name}</h3>
                         <p>{character.species} - {character.status}</p>
                     </div>
                 ))}
@@ -92,6 +101,13 @@ export default function CharacterList() {
                     </button>
                 </div>
             )}
+            <CharacterModal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                character={selectedCharacter}
+            />
+
         </div>
+
     );
 }
